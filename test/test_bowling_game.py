@@ -35,3 +35,18 @@ class GameTest(unittest.TestCase):
 
          # assert
          self.assertEqual(56, get_score)
+
+    def test_get_score__4_first_roll_spare_second_roll_3_others_rolls__return_67(self):
+        # arrange
+        bowling_game_class = bowling_game.Game()
+
+        # act
+        bowling_game_class.record_roll(num_pins_knocked=4)
+        bowling_game_class.record_roll(num_pins_knocked=6)
+        for turns in range(9):
+            bowling_game_class.record_roll(num_pins_knocked=3)
+            bowling_game_class.record_roll(num_pins_knocked=3)
+        get_score = bowling_game_class.get_score()
+
+        # assert
+        self.assertEqual(67, get_score)
